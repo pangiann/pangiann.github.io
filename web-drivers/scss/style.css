@@ -104,7 +104,6 @@ h2 {
   margin-bottom: 10px;
   font-size: 1.875rem;
   color: #2d314d;
-  text-align: center;
 }
 
 @media (min-width: 64em) {
@@ -582,15 +581,21 @@ button:hover, .button:hover {
 }
 
 .feature__text {
-  padding-top: 0px 40px 40px 40px;
-  width: 550px;
-  margin-left: auto;
-  margin-right: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.875rem;
+  color: #2d314d;
 }
 
-@media (max-width: 63.9375em) {
+@media (min-width: 64em) {
   .feature__text {
-    width: 400px;
+    font-size: 2.8rem;
   }
 }
 
@@ -631,8 +636,16 @@ button:hover, .button:hover {
 }
 
 .feature__icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin-bottom: 1.875rem;
-  text-align: center;
 }
 
 @media (min-width: 64em) {

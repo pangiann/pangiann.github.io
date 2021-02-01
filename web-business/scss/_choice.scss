@@ -10,10 +10,9 @@
 
     }
     &__top {
-        
-        width: 550px;
+        display: flex;
+        justify-content: center;
         @include breakpoint-down(medium) {
-            width: 400px;
             margin-top: 3rem;
         }
         margin-left: auto;

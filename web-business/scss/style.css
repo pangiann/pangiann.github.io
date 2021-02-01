@@ -592,7 +592,12 @@ button:hover, .button:hover {
 }
 
 .choice__top {
-  width: 550px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin-left: auto;
   margin-right: auto;
   padding-bottom: 4rem;
@@ -601,7 +606,6 @@ button:hover, .button:hover {
 
 @media (max-width: 63.9375em) {
   .choice__top {
-    width: 400px;
     margin-top: 3rem;
   }
 }

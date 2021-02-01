@@ -385,15 +385,17 @@ button:hover, .button:hover {
   background-repeat: no-repeat;
   background-position: center center;
   height: auto;
-  padding-top: 7.5625rem;
-  padding-right: 1.5rem;
-  padding-left: 1.5rem;
+  padding-top: 20.5625rem;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
   padding-bottom: 13.75rem;
 }
 
 .hero__form {
+  position: relative;
   display: block;
   margin-bottom: 10rem;
+  height: 26.5rem;
   padding-top: 2rem;
   padding-left: 3.625rem;
   padding-right: 3.625rem;
