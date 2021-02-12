@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400&display=swap" rel="stylesheet">
 	<title>InCharge</title>
 </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
 
 <body>
 	<header class="header">
@@ -64,10 +65,11 @@
                 </div>
                 <div class="hero__fill">
                     <div class="lab">
-                        <label for="lname">Last Name</label>
+                        <label for="lname">Password</label>
                     </div>
                     <div class="inp">
-                        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+						<input type="password" id="password" name="lastname" placeholder="Your password...">
+						<p id="password-strength-text"></p>
                     </div>
                 </div>
                 <div class="hero__fill">
