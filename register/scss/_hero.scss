@@ -13,7 +13,40 @@
 
         
     
+    &__choice {
+        display: block;
 
+        margin-top: 1.1rem;
+        
+        .select_flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;;
+            .f1 {
+                flex: 1;
+            }
+            .f2 {
+                flex: 1;
+            }
+        }
+        .f1, .f2 {
+            width: 100%;
+            padding: 12px;
+            
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: white;
+            @include breakpoint-down(small) {
+                padding: 8px;
+                
+            }
+        }
+        .f1 {
+            margin-right: 0.5rem;
+        }
+           
+    }
     &__form {
         display: block;
         margin-bottom: 10rem;

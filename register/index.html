@@ -12,7 +12,7 @@
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
 
-<body>
+<body onload=loadCars()>
 	<header class="header">
 		<div class="overlay has-fade hide-for-desktop"></div>
 		<nav class="container container--nav container--pall flex flex-jc-sb flex-ai-c">
@@ -29,10 +29,10 @@
 			<div class="header__links hide-for-mobile">
 				<a href="../business-register/index.html" class="Business">Business</a>
 				<a href="#" class="Drivers">Drivers</a>
-				
+
 			</div>
 
-			
+
 		</nav>
 	</header>
 	<div class="header__menu has-fade hide-for-desktop">
@@ -42,7 +42,7 @@
 		<a href="/login/index.html">Log In</a>
 		<a href="#">Register</a>
 	</div>
-    
+
     <section class="hero">
         <div class="hero__image">
             <div class="hero__form">
@@ -52,9 +52,17 @@
                     </div>
                     <div class="reg">
                         <a href="#" class="reg">Register</a>
-                    </div>        
+                    </div>
                 </div>
-                <div class="hero__fill">
+				<div class="hero__fill">
+                    <div class="lab">
+                        <label for="lname" >First Name</label>
+                    </div>
+                    <div class="inp">
+                        <input type="text" id="fname" name="firstname" placeholder="Your first name..">
+                    </div>
+                </div>
+				<div class="hero__fill">
                     <div class="lab">
                         <label for="lname">Last Name</label>
                     </div>
@@ -64,39 +72,62 @@
                 </div>
                 <div class="hero__fill">
                     <div class="lab">
-                        <label for="lname">Password</label>
+                        <label for="password">Password</label>
                     </div>
                     <div class="inp">
                         <input type="password" id="password" name="lastname" placeholder="Your password...">
-
 						<p id="password-strength-text"></p>
                     </div>
                 </div>
                 <div class="hero__fill">
                     <div class="lab">
-                        <label for="lname">Last Name</label>
+                        <label for="username">UserName</label>
                     </div>
                     <div class="inp">
-                        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                        <input type="text" id="username" name="username" placeholder="Your UserName..">
                     </div>
                 </div>
                 <div class="hero__fill">
                     <div class="lab">
-                        <label for="lname">Last Name</label>
+                        <label for="email">Email</label>
                     </div>
                     <div class="inp">
-                        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                        <input type="text" id="email" name="email" placeholder="Your email address..">
                     </div>
                 </div>
+								<div class="hero__fill">
+                    <div class="lab">
+                        <label for="lname">Phone</label>
+                    </div>
+                    <div class="inp">
+                        <input type="text" id="phone" name="phone" placeholder="Your phone number..">
+                    </div>
+                </div>
+				<div class="hero__choice">
+					<div class="lab">
+                        <label for="scar">Select Car:</label>
+                    </div>
+					<div class="select_flex">
+						<select class="f1" id="f1" onchange=loadModel()>
+							<option class="kappa" value="0">Select brand:</option>
+						</select>
+						<select class="f2" id="f2">
+							<option class="kappa" value="0">Select model:</option>
+						</select>
+
+					</div>
+					
+				</div>
                 <div class="hero__bottom">
                     <div class="sign">
                         <a href="#" >Sign In instead</a>
                     </div>
                     <div class="create">
-                        <a href="#" class="button">Create</a>
+                        <a href="#" class="button" onclick="userRegister()">Create</a>
                     </div>
-                    
+
                 </div>
+				
             </div>
         </div>
 
@@ -142,7 +173,7 @@
 				<div class="footer__copyright">
 					&copy; inCharge. All Rights Reserved.
 				</div>
-			</div>	
+			</div>
 
 		</div>
 	</section>
@@ -151,4 +182,3 @@
 
 
 </body>
-
