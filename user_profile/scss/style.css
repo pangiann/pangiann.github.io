@@ -715,6 +715,16 @@ button:hover, .button:hover {
           justify-content: center;
 }
 
+@media (max-width: 39.9375em) {
+  .choices {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #3D4446;
+  }
+}
+
 @media (min-width: 40em) {
   .choices {
     height: auto;
@@ -727,23 +737,33 @@ button:hover, .button:hover {
 }
 
 .choices .container {
-  padding-top: 2.2rem;
-  padding-bottom: 2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   margin-left: 1.3rem;
   margin-right: 1.3rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .choices__first {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  margin-right: 3rem;
+  margin-right: 4rem;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  width: 60px;
-  height: 60px;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
+}
+
+@media (min-width: 40em) {
+  .choices__first {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
 }
 
 .choices__first .cls-1 {
@@ -754,17 +774,24 @@ button:hover, .button:hover {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  margin-right: 3rem;
+  margin-right: 4rem;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  width: 60px;
-  height: 60px;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
 }
 
+@media (min-width: 40em) {
+  .choices__second {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
 .choices__second .cls-2 {
-  fill: #fab90a;
+  fill: white;
 }
 
 .choices__third {
@@ -774,13 +801,21 @@ button:hover, .button:hover {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  width: 60px;
-  height: 60px;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
+}
+
+@media (min-width: 40em) {
+  .choices__third {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
 }
 
 .choices__third .st1 {
   fill: #fab90a;
+  stroke: #3D4446;
 }
 
 .footer {

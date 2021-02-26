@@ -1,6 +1,15 @@
 
 .choices {
 
+    @include breakpoint-down(small) {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #3D4446;
+
+
+    }
     @include breakpoint-up(medium) {
         height: auto;
         box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.15);
@@ -10,11 +19,11 @@
 
     }
     .container {
-        padding-top: 2.2rem;
-        padding-bottom: 2rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
         margin-left: 1.3rem;
         margin-right: 1.3rem;
-        
+        align-items: center;
     
     }
     display: flex;
@@ -24,15 +33,19 @@
     &__first {
         
         flex: 1;
-        margin-right: 3rem;
+        margin-right: 4rem;
         //background-image: url('../../images/stat.png');
         
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
-        width: 60px;
-        height: 60px;
+        width: 2rem;
+        height: 2rem;
         border-radius: 50%;
+        @include breakpoint-up(medium) {
+            width: 3.5rem;
+            height: 3.5rem;
+        }
         .cls-1 {
             fill: #fab90a;
         }
@@ -42,17 +55,21 @@
     
     &__second {
         flex: 1;
-        margin-right: 3rem;
+        margin-right: 4rem;
 
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
-        width: 60px;
-        height: 60px;
+        width: 2rem;
+        height: 2rem;
         border-radius: 50%;
+        @include breakpoint-up(medium) {
+            width: 3.5rem;
+            height: 3.5rem;
+        }
 
         .cls-2 {
-            fill: #fab90a;
+            fill: white;
         }
 
     }
@@ -62,11 +79,17 @@
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center center;
-        width: 60px;
-        height: 60px;
+        width: 2rem;
+        height: 2rem;
+        @include breakpoint-up(medium) {
+            width: 3.5rem;
+            height: 3.5rem;
+        }
         border-radius: 50%;
         .st1 {
             fill: #fab90a;
+            stroke: #3D4446;
+            
         }
         
     }
