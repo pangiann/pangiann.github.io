@@ -2,6 +2,11 @@
   visibility: hidden;
 }
 
+.closed {
+  visibility: hidden;
+  height: 0;
+}
+
 @-webkit-keyframes fade-in {
   from {
     visibility: hidden;
@@ -491,23 +496,18 @@ button:hover, .button:hover {
   min-width: min-content;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 300px;
-      grid-template-columns: 300px;
-  -ms-grid-rows: 210px 210px 80px;
-      grid-template-rows: 210px 210px 80px;
       grid-template-areas: "image" "text" "stats";
-  border-radius: 18px;
   background: white;
   -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
           box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
   font-family: roboto;
-  text-align: center;
 }
 
 .subInfo .card-image {
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   grid-area: image;
+  height: 210px;
 }
 
 .subInfo .card-text {
@@ -527,8 +527,6 @@ button:hover, .button:hover {
   -ms-grid-column: 1;
   grid-area: image;
   background: url("../../images/haha.jpg");
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
   background-size: cover;
 }
 
@@ -564,8 +562,6 @@ button:hover, .button:hover {
   display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
   background: #fab90a;
 }
 
@@ -604,12 +600,9 @@ button:hover, .button:hover {
   min-width: min-content;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 300px;
-      grid-template-columns: 300px;
   -ms-grid-rows: 210px 210px 80px;
       grid-template-rows: 210px 210px 80px;
       grid-template-areas: "image" "text" "stats";
-  border-radius: 18px;
   background: white;
   -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
           box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.9);
@@ -640,8 +633,6 @@ button:hover, .button:hover {
   -ms-grid-column: 1;
   grid-area: image;
   background: url("../../images/haha.jpg");
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
   background-size: cover;
 }
 
@@ -679,8 +670,6 @@ button:hover, .button:hover {
       grid-template-columns: 1fr 1fr;
   -ms-grid-rows: 1fr;
       grid-template-rows: 1fr;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
   background: #fab90a;
 }
 

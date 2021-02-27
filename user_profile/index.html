@@ -12,14 +12,14 @@
 	<title>InCharge</title>
 </head>
 
-<body>
+<body onload=getUserInfo()>
     <header class="header">
         <nav class="container container--nav container--px container--pb flex flex-jc-sb">
             <a href="#" class="header__pic">
             
             </a>
             <a href="#" class="header__name">
-                <h1>PanGiann</h1>
+                <h1 id="username"></h1>
             </a>
         </nav>
         
@@ -42,7 +42,7 @@
     
                         </div>
                      </div>
-                     <p> pangiann134ever@gmail.com</p>   
+                     <p id="email"></p>   
                 </div>
                 <div class="hero__info">
                     <div class="circle">
@@ -50,7 +50,7 @@
     
                        </div>
                     </div>
-                    <p> 6983200726</p>   
+                    <p id="phone"> </p>   
                </div>
                
                 <div class="hero__info">
@@ -59,7 +59,7 @@
     
                        </div>
                     </div>
-                    <p> Panagiotis Gianoulis </p>   
+                    <p id="name">   </p>   
                </div>
                 <div class="hero__info">
                     <div class="circle">
@@ -67,31 +67,32 @@
     
                        </div>
                     </div>
-                    <p> Melinas Merkouri 53</p>   
+                    <p id="address"></p>   
                </div>
             </div>
         </section>
-        <section class="subInfo">
-            <div class="subInfo__card">
+        <section class="subInfo ">
+            <div class="subInfo__card ">
                 <div class="card-image"></div>
-                    <div class="card-text">
-                        
-                        <h2>Elpedison</h2>
-                        <p>Every time you charge your car you win more points to spend them in various shops.</p>
+                <div class="card-text" id="card-text">
+                    
+                    <h2 id="provider"></h2>
+                    <p id="provider_text">Every time you charge your car you win more points to spend them in various shops.</p>
+                </div>
+                <div class="card-stats">
+                    <div class="stat border">
+                        <div class="value" id="points"></div>
+                        <div class="type">points</div>
                     </div>
-                    <div class="card-stats">
-                        <div class="stat border">
-                            <div class="value">17000</div>
-                            <div class="type">points</div>
-                        </div>
-                        <div class="stat">
-                            <div class="value">7.99$</div>
-                            <div class="type">month</div>
-                        </div>
+                    <div class="stat">
+                        <div class="value" id="cost"></div>
+                        <div class="type">month</div>
                     </div>
                 </div>
+            </div>
+           
+               
         </section>
-        
     
    
         <section class="carInfo">
@@ -99,17 +100,17 @@
                 <div class="card-image"></div>
                     <div class="card-text">
                         
-                        <h2>Tesla</h2>
+                        <h2 id="car_name"></h2>
                         <p>Drive with safety and do not forget to charge you Car. </p>
                     </div>
                     <div class="card-stats">
                         <div class="stat border">
                             <div class="value">Model</div>
-                            <div class="type">3</div>
+                            <div class="type" id="model"></div>
                         </div>
                         <div class="stat">
                             <div class="value">Capacitance</div>
-                            <div class="type">99 kWh</div>
+                            <div class="type" id="capacitance"></div>
                         </div>
                     </div>
                 </div>
@@ -186,4 +187,6 @@
 
 		</div>
 	</section>
+    <script src="js/script.js"></script>
+
 </body>

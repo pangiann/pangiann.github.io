@@ -2,6 +2,10 @@
     visibility: hidden;
 }
 
+.closed {
+    visibility: hidden;
+    height: 0;
+}
 
 @keyframes fade-in {
     from {      
