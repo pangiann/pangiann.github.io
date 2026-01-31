@@ -1,0 +1,61 @@
+{
+  "categories": [
+    {
+      "title": "Iconic Plazas",
+      "items": [
+        "Puerta del Sol - The absolute center of Spain (Kilometer Zero), home to the Tío Pepe sign and Bear statue",
+        "Plaza Mayor - Grand central square with beautiful arcaded buildings, perfect for people-watching",
+        "Plaza de Colón - Impressive monuments honoring Christopher Columbus with fountains and Spanish flag",
+        "Plaza de Cibeles - Stunning fountain and palace, one of Madrid's most photographed spots",
+        "Plaza de España - Large square with Cervantes monument, recently renovated"
+      ]
+    },
+    {
+      "title": "Monuments & Gates",
+      "items": [
+        "Puerta de Alcalá - Madrid's most iconic neoclassical monument at the entrance to Retiro Park",
+        "Templo de Debod - Ancient Egyptian temple with spectacular sunset views",
+        "Fuente de Neptuno - Beautiful fountain at Paseo del Prado, celebration spot for Atlético Madrid fans",
+        "Estatua del Oso y el Madroño - Madrid's symbol at Puerta del Sol"
+      ]
+    },
+    {
+      "title": "Emblematic Buildings",
+      "items": [
+        "Edificio Metrópolis - Stunning Beaux-Arts building with distinctive dome, most photographed in Madrid",
+        "Palacio Real - One of Europe's largest royal palaces with over 3,000 rooms",
+        "Banco de España - Magnificent 19th-century building housing Spain's central bank",
+        "Palacio de Cibeles - Former post office, now Madrid's City Hall with rooftop viewpoint",
+        "Gran Vía Buildings - Art Deco and early 20th-century architecture along Madrid's Broadway",
+        "Edificio Telefónica - Historic skyscraper on Gran Vía, first high-rise in Europe"
+      ]
+    },
+    {
+      "title": "Churches & Religious Sites",
+      "items": [
+        "Catedral de la Almudena - Madrid's cathedral next to the Royal Palace",
+        "Basílica de San Francisco el Grande - Impressive dome and art collection",
+        "Iglesia de San Ginés - Historic church near Sol, beautiful baroque interior",
+        "Convento de las Descalzas Reales - 16th-century convent with stunning art collection"
+      ]
+    },
+    {
+      "title": "Parks & Gardens",
+      "items": [
+        "Parque del Retiro - Madrid's green lung with Crystal Palace, lake, and gardens",
+        "Jardines de Sabatini - Formal gardens next to Royal Palace",
+        "Campo del Moro - Palace gardens with peacocks and romantic pathways",
+        "Jardín Botánico - Beautiful botanical garden near the Prado",
+        "Madrid Río - Modern riverside park along the Manzanares"
+      ]
+    },
+    {
+      "title": "Markets",
+      "items": [
+        "Mercado de San Miguel - Gourmet market near Plaza Mayor, perfect for tapas",
+        "Mercado de San Antón - Modern market in Chueca with rooftop terrace",
+        "El Rastro - Famous Sunday flea market in La Latina (Sundays only)"
+      ]
+    }
+  ]
+}

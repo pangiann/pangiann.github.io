@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid Layout Test</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Ovo&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body {
+      padding: 2rem;
+    }
+    .test-info {
+      background: #f0f0f0;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="test-info">
+    <h2>Responsive Grid Test</h2>
+    <p>Resize your browser to test responsive behavior:</p>
+    <ul>
+      <li>Mobile (&lt; 768px): 1 column</li>
+      <li>Tablet (768px - 1024px): 2 columns</li>
+      <li>Desktop (&gt; 1024px): 3 columns</li>
+    </ul>
+  </div>
+
+  <section class="content-section">
+    <h2 class="section__title">Test Cards Grid</h2>
+    <div class="cards-grid">
+      <article class="content-card">
+        <h3 class="card__title">Test Card 1</h3>
+        <div class="card__meta">
+          <span class="card__location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            La Latina
+          </span>
+          <span class="card__travel-time">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/>
+            </svg>
+            15 min from Sol
+          </span>
+        </div>
+        <p class="card__known-for">
+          <strong>Known for:</strong> Traditional cocido madrileño, cozy atmosphere, local crowd
+        </p>
+      </article>
+
+      <article class="content-card">
+        <h3 class="card__title">Test Card 2</h3>
+        <div class="card__meta">
+          <span class="card__location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            Malasaña
+          </span>
+          <span class="card__travel-time">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/>
+            </svg>
+            20 min from Sol
+          </span>
+        </div>
+        <p class="card__known-for">
+          <strong>Known for:</strong> Vintage shops, street art, alternative culture
+        </p>
+      </article>
+
+      <article class="content-card">
+        <h3 class="card__title">Test Card 3</h3>
+        <div class="card__meta">
+          <span class="card__location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            Chueca
+          </span>
+          <span class="card__travel-time">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/>
+            </svg>
+            10 min from Sol
+          </span>
+        </div>
+        <p class="card__known-for">
+          <strong>Known for:</strong> LGBTQ+ friendly, trendy bars, vibrant nightlife
+        </p>
+      </article>
+
+      <article class="content-card">
+        <h3 class="card__title">Test Card 4</h3>
+        <div class="card__meta">
+          <span class="card__location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            Retiro
+          </span>
+          <span class="card__travel-time">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/>
+            </svg>
+            25 min from Sol
+          </span>
+        </div>
+        <p class="card__known-for">
+          <strong>Known for:</strong> Beautiful park, crystal palace, peaceful walks
+        </p>
+      </article>
+
+      <article class="content-card">
+        <h3 class="card__title">Test Card 5</h3>
+        <div class="card__meta">
+          <span class="card__location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            Salamanca
+          </span>
+          <span class="card__travel-time">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/>
+            </svg>
+            18 min from Sol
+          </span>
+        </div>
+        <p class="card__known-for">
+          <strong>Known for:</strong> Upscale shopping, elegant architecture, fine dining
+        </p>
+      </article>
+
+      <article class="content-card">
+        <h3 class="card__title">Test Card 6</h3>
+        <div class="card__meta">
+          <span class="card__location">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            Lavapiés
+          </span>
+          <span class="card__travel-time">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/>
+            </svg>
+            12 min from Sol
+          </span>
+        </div>
+        <p class="card__known-for">
+          <strong>Known for:</strong> Multicultural neighborhood, authentic tapas, street markets
+        </p>
+      </article>
+    </div>
+  </section>
+</body>
+</html>

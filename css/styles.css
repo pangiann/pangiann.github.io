@@ -1,0 +1,1462 @@
+/* Madrid City Guide Styles */
+
+/* 
+ * Performance Optimization Notes:
+ * - CSS is organized mobile-first to minimize render-blocking
+ * - Critical styles are loaded inline in production builds
+ * - Font loading uses display=swap to prevent FOIT (Flash of Invisible Text)
+ * - Images use lazy loading for below-fold content
+ */
+
+/* CSS Custom Properties */
+:root {
+  /* Primary colors */
+  --color-background: #ede9d7;
+  --color-text: #4e2a1e;
+  --color-accent-blue: #98b7d2;
+  --color-accent-green: #32412d;
+  
+  /* Derived colors */
+  --color-card-bg: #f5f2e8;
+  --color-border: #d4cfc0;
+  --color-text-muted: #7a5c4f;
+  
+  /* Font families */
+  --font-heading: 'Fraunces', serif;
+  --font-body: 'Ovo', serif;
+  
+  /* Font display strategy: swap ensures text remains visible during font load */
+  
+  /* Font sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  
+  /* Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+}
+
+/* CSS Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  line-height: 1.6;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-text);
+  color: var(--color-background);
+  padding: var(--space-2) var(--space-4);
+  text-decoration: none;
+  z-index: 100;
+  border-radius: var(--space-1);
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
+/* Site Header Navigation */
+.site-header {
+  background-color: var(--color-background);
+  border-bottom: 2px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 4px rgba(78, 42, 30, 0.05);
+}
+
+.site-nav {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-2) var(--space-4);
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin: 0;
+}
+
+.nav-link {
+  font-family: var(--font-heading);
+  font-size: var(--text-xs);
+  color: var(--color-text);
+  text-decoration: none;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--space-1);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  display: block;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  background-color: var(--color-accent-blue);
+  color: var(--color-background);
+}
+
+.nav-link:focus {
+  outline: 3px solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
+/* Responsive Design - Tablet and up */
+@media (min-width: 768px) {
+  .site-nav {
+    padding: var(--space-3) var(--space-6);
+  }
+  
+  .nav-list {
+    gap: var(--space-4);
+  }
+  
+  .nav-link {
+    font-size: var(--text-sm);
+    padding: var(--space-2) var(--space-3);
+  }
+}
+
+/* Responsive Design - Desktop */
+@media (min-width: 1024px) {
+  .nav-list {
+    gap: var(--space-6);
+  }
+  
+  .nav-link {
+    font-size: var(--text-base);
+  }
+}
+
+/* Focus indicators for all interactive elements */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 3px solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
+/* Focus visible for keyboard navigation only */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
+/* Remove outline for mouse clicks (but keep for keyboard) */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible),
+select:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: var(--space-4);
+}
+
+h1 {
+  font-size: var(--text-5xl);
+}
+
+h2 {
+  font-size: var(--text-4xl);
+}
+
+h3 {
+  font-size: var(--text-2xl);
+}
+
+p {
+  margin-bottom: var(--space-4);
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Sections */
+section {
+  padding: var(--space-16) var(--space-4);
+}
+
+/* Hero Section */
+.hero {
+  background-color: var(--color-background);
+  padding: var(--space-4) var(--space-4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__banner {
+  background-color: #98b7d2;
+  border-radius: 38px;
+  padding: var(--space-4) var(--space-6);
+  width: 100%;
+  max-width: 1000px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hero__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.hero__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+  font-style: italic;
+}
+
+.hero__intro {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* Responsive Design - Tablet and up */
+@media (min-width: 768px) {
+  .hero {
+    padding: var(--space-8) var(--space-8);
+  }
+  
+  .hero__banner {
+    padding: var(--space-6) var(--space-8);
+  }
+  
+  .hero__title {
+    font-size: var(--text-3xl);
+  }
+  
+  .hero__subtitle {
+    font-size: var(--text-lg);
+  }
+  
+  .hero__intro {
+    font-size: var(--text-base);
+  }
+}
+
+/* Responsive Design - Desktop */
+@media (min-width: 1024px) {
+  .hero {
+    padding: var(--space-12) var(--space-16);
+  }
+  
+  .hero__banner {
+    padding: var(--space-8) var(--space-12);
+  }
+  
+  .hero__title {
+    font-size: var(--text-4xl);
+  }
+}
+
+/* Introduction Section */
+.intro-section {
+  background-color: var(--color-background);
+  padding: var(--space-2) var(--space-4);
+}
+
+.intro__content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--space-8);
+}
+
+.intro__heading {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  text-align: center;
+  margin-bottom: var(--space-3);
+  font-weight: 300;
+}
+
+.intro__text {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text);
+  line-height: 1.6;
+  margin-bottom: var(--space-3);
+  text-align: left;
+}
+
+.intro__text:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive Design - Tablet and up */
+@media (min-width: 768px) {
+  .intro-section {
+    padding: var(--space-4) var(--space-8);
+  }
+  
+  .intro__content {
+    padding: 0 var(--space-12);
+  }
+  
+  .intro__heading {
+    font-size: var(--text-base);
+  }
+  
+  .intro__text {
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+}
+
+/* Responsive Design - Desktop */
+@media (min-width: 1024px) {
+  .intro-section {
+    padding: var(--space-6) var(--space-16);
+  }
+  
+  .intro__content {
+    padding: 0 var(--space-16);
+  }
+  
+  .intro__heading {
+    font-size: var(--text-lg);
+  }
+  
+  .intro__text {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+}
+
+/* Placeholder styles - will be expanded in later tasks */
+
+/* Neighborhood Map Section */
+.neighborhood-map {
+  background-color: var(--color-background);
+}
+
+.section__title {
+  font-family: var(--font-heading);
+  color: var(--color-text);
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.map__container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 var(--space-16);
+}
+
+.map__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.map__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: var(--space-8);
+}
+
+/* Responsive Design - Tablet and up */
+@media (min-width: 768px) {
+  .map__container {
+    max-width: 700px;
+    padding: 0 var(--space-24);
+  }
+  
+  .map__image {
+    border-radius: var(--space-8);
+  }
+}
+
+/* Responsive Design - Desktop */
+@media (min-width: 1024px) {
+  .map__container {
+    max-width: 900px;
+    padding: 0 6rem;
+  }
+}
+
+/* Map Legend */
+.map__legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
+  padding: var(--space-6);
+  background-color: var(--color-card-bg);
+  border-radius: var(--space-2);
+  border: 1px solid var(--color-border);
+}
+
+.legend__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+
+.legend__color {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--space-1);
+  border: 1px solid var(--color-text);
+  flex-shrink: 0;
+}
+
+.legend__label {
+  line-height: 1.4;
+}
+
+/* Legend color swatches matching zone colors */
+.legend__color--sol {
+  background-color: #e8c170;
+}
+
+.legend__color--latina {
+  background-color: #c17f59;
+}
+
+.legend__color--malasana {
+  background-color: #98b7d2;
+}
+
+.legend__color--chueca {
+  background-color: #d4a5c9;
+}
+
+.legend__color--lavapies {
+  background-color: #a8c090;
+}
+
+.legend__color--letras {
+  background-color: #c9b896;
+}
+
+.legend__color--retiro {
+  background-color: #32412d;
+}
+
+.legend__color--salamanca {
+  background-color: #b8a07e;
+}
+
+.legend__color--opera {
+  background-color: #e6b89c;
+}
+
+.legend__color--palacio {
+  background-color: #d9c4a8;
+}
+
+.legend__color--moncloa {
+  background-color: #b5c9d8;
+}
+
+.legend__color--pacifico {
+  background-color: #c8b5a0;
+}
+
+.legend__color--atocha {
+  background-color: #d4c5b0;
+}
+
+.legend__color--casa-campo {
+  background-color: #9db89f;
+}
+
+.legend__color--rio-manzanares {
+  background-color: #a5c4d8;
+}
+
+.legend__color--parque-oeste {
+  background-color: #b8d4a8;
+}
+
+.legend__color--entre-iglesias {
+  background-color: #d8c8b8;
+}
+
+.legend__color--rios-rosas {
+  background-color: #c8b8d8;
+}
+
+.legend__color--cuatro-caminos {
+  background-color: #b8c8d8;
+}
+
+.legend__color--chamberi {
+  background-color: #d8b8c8;
+}
+
+.legend__color--cuatro-torres {
+  background-color: #a8b8c8;
+}
+
+/* Responsive Design - Tablet and up */
+@media (min-width: 768px) {
+  .map__legend {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+  
+  .legend__item {
+    font-size: var(--text-base);
+  }
+}
+
+/* Responsive Design - Desktop */
+@media (min-width: 1024px) {
+  .map__legend {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Content Card Component */
+.content-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--space-2);
+  padding: var(--space-6);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.content-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(78, 42, 30, 0.1);
+}
+
+.content-card:focus-within {
+  outline: 3px solid var(--color-accent-blue);
+  outline-offset: 2px;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(78, 42, 30, 0.1);
+}
+
+.card__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+  line-height: 1.3;
+}
+
+.card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.card__location,
+.card__travel-time {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.card__location svg,
+.card__travel-time svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.card__location svg {
+  fill: var(--color-accent-blue);
+}
+
+.card__travel-time svg {
+  fill: var(--color-accent-green);
+}
+
+.card__known-for {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+.card__known-for strong {
+  color: var(--color-accent-green);
+  font-weight: 600;
+}
+
+.card__how-to-get-there {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  line-height: 1.7;
+  margin-top: var(--space-4);
+  margin-bottom: 0;
+  padding: var(--space-3);
+  background-color: rgba(152, 183, 210, 0.1);
+  border-left: 3px solid var(--color-accent-blue);
+  border-radius: var(--space-1);
+}
+
+.card__how-to-get-there strong {
+  color: var(--color-accent-blue);
+  font-weight: 600;
+}
+
+.card__ticket-info {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  line-height: 1.7;
+  margin-top: var(--space-4);
+  margin-bottom: 0;
+  padding: var(--space-3);
+  background-color: rgba(50, 65, 45, 0.1);
+  border-left: 3px solid var(--color-accent-green);
+  border-radius: var(--space-1);
+}
+
+.card__ticket-info strong {
+  color: var(--color-accent-green);
+  font-weight: 600;
+}
+
+.card__map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--color-accent-blue);
+  color: var(--color-background);
+  text-decoration: none;
+  border-radius: var(--space-1);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.card__map-link:hover {
+  background-color: var(--color-accent-green);
+  transform: translateY(-1px);
+}
+
+.card__map-link:focus {
+  outline: 3px solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
+.card__map-link svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* Responsive Design - Tablet and up */
+@media (min-width: 768px) {
+  .content-card {
+    padding: var(--space-8);
+  }
+  
+  .card__title {
+    font-size: var(--text-2xl);
+  }
+  
+  .card__meta {
+    font-size: var(--text-base);
+  }
+  
+  .card__location svg,
+  .card__travel-time svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .card__known-for {
+    font-size: var(--text-lg);
+  }
+}
+
+/* Cards Grid Layout */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Responsive Design - Tablet (768px - 1024px) */
+@media (min-width: 768px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+}
+
+/* Responsive Design - Desktop (> 1024px) */
+@media (min-width: 1024px) {
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Photo Grid Component */
+.photo-grid {
+  display: grid;
+  gap: var(--space-4);
+  margin-bottom: var(--space-12);
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Mobile: Single column */
+.photo-grid {
+  grid-template-columns: 1fr;
+}
+
+.photo-grid__item {
+  overflow: hidden;
+  border-radius: var(--space-2);
+  background-color: var(--color-card-bg);
+}
+
+.photo-grid__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.photo-grid__item:hover img {
+  transform: scale(1.05);
+}
+
+/* Featured item styling (optional larger display) */
+.photo-grid__item--featured {
+  position: relative;
+}
+
+/* Responsive Design - Tablet (768px - 1024px) */
+@media (min-width: 768px) {
+  .photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+  
+  /* 3-column grid on tablet shows 2 columns */
+  .photo-grid--3col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Responsive Design - Desktop (> 1024px) */
+@media (min-width: 1024px) {
+  .photo-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-8);
+  }
+  
+  /* 3-column grid on desktop shows full 3 columns */
+  .photo-grid--3col {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tips Section */
+.tips-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Sightseeing Categories */
+.sightseeing-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+.sightseeing-category {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--space-2);
+  padding: var(--space-6);
+}
+
+.sightseeing-category__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  color: var(--color-accent-green);
+  margin-bottom: var(--space-4);
+  font-weight: 300;
+}
+
+.sightseeing-category__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sightseeing-category__item {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  line-height: 1.7;
+  padding: var(--space-2) 0;
+  padding-left: var(--space-6);
+  position: relative;
+}
+
+.sightseeing-category__item::before {
+  content: "•";
+  position: absolute;
+  left: var(--space-3);
+  color: var(--color-accent-blue);
+  font-weight: bold;
+}
+
+/* Responsive Design - Tablet and up */
+@media (min-width: 768px) {
+  .sightseeing-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .sightseeing-category {
+    padding: var(--space-8);
+  }
+  
+  .sightseeing-category__title {
+    font-size: var(--text-2xl);
+  }
+  
+  .sightseeing-category__item {
+    font-size: var(--text-base);
+  }
+}
+
+/* Responsive Design - Desktop */
+@media (min-width: 1024px) {
+  .sightseeing-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tip-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--space-2);
+  padding: var(--space-6);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tip-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(78, 42, 30, 0.1);
+}
+
+.tip-card:focus-within {
+  outline: 3px solid var(--color-accent-blue);
+  outline-offset: 2px;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(78, 42, 30, 0.1);
+}
+
+.tip-card__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  color: var(--color-accent-green);
+  margin-bottom: var(--space-3);
+  line-height: 1.3;
+}
+
+.tip-card__text {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* Responsive Design - Tablet (768px - 1024px) */
+@media (min-width: 768px) {
+  .tips-content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+  
+  .tip-card {
+    padding: var(--space-8);
+  }
+  
+  .tip-card__title {
+    font-size: var(--text-2xl);
+  }
+  
+  .tip-card__text {
+    font-size: var(--text-lg);
+  }
+}
+
+/* Responsive Design - Desktop (> 1024px) */
+@media (min-width: 1024px) {
+  .tips-content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Category Card Component - for grouped lists */
+.category-card {
+  background-color: var(--color-accent-blue);
+  border-radius: 38px;
+  padding: var(--space-8);
+  margin-bottom: var(--space-8);
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.category-card__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  color: var(--color-text);
+  margin-bottom: var(--space-6);
+  font-weight: 400;
+  text-align: center;
+}
+
+.category-card__subtitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  color: var(--color-text);
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-4);
+  font-weight: 500;
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-list__item {
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid rgba(78, 42, 30, 0.15);
+}
+
+.category-list__item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.item__name {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+  font-weight: 500;
+}
+
+.item__address {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+  font-style: italic;
+}
+
+.item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+}
+
+.item__neighborhood,
+.item__price,
+.item__category {
+  padding: var(--space-1) var(--space-3);
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.item__price {
+  color: var(--color-accent-green);
+  font-weight: 600;
+}
+
+.item__description {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  line-height: 1.6;
+  margin-bottom: var(--space-2);
+}
+
+.item__detail {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin-bottom: var(--space-1);
+}
+
+.item__note {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-accent-green);
+  font-weight: 600;
+  margin-top: var(--space-2);
+}
+
+/* Subsection titles within main sections */
+.subsection__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  color: var(--color-text);
+  margin-bottom: var(--space-6);
+  margin-top: var(--space-8);
+  text-align: center;
+  font-weight: 300;
+}
+
+/* Responsive Design - Tablet and up */
+@media (min-width: 768px) {
+  .category-card {
+    padding: var(--space-12);
+  }
+  
+  .category-card__title {
+    font-size: var(--text-3xl);
+  }
+  
+  .category-card__subtitle {
+    font-size: var(--text-xl);
+  }
+  
+  .item__name {
+    font-size: var(--text-xl);
+  }
+  
+  .item__address,
+  .item__description,
+  .item__detail {
+    font-size: var(--text-base);
+  }
+  
+  .subsection__title {
+    font-size: var(--text-2xl);
+  }
+}
+
+/* Responsive Design - Desktop */
+@media (min-width: 1024px) {
+  .category-card {
+    padding: var(--space-16);
+  }
+}
+
+/* List Grid Layout - Compact text-based items */
+.list-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.list-grid__group {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+/* Category headers within the grid - left-aligned, dark green color */
+.list-grid__category-header {
+  grid-column: 1 / -1;
+  font-family: var(--font-heading);
+  font-size: var(--text-base);
+  color: var(--color-accent-green);
+  font-weight: 400;
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-3);
+  text-align: left;
+}
+
+.list-grid__category-header:first-child {
+  margin-top: 0;
+}
+
+/* Reduce spacing between food/nightlife sections */
+#food,
+#nightlife,
+#must-try {
+  padding: var(--space-8) var(--space-4);
+}
+
+/* List Item - Minimal, text-focused design */
+.list-item {
+  padding: 0;
+  margin-bottom: var(--space-3);
+}
+
+.list-item__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  color: var(--color-text);
+  font-weight: 500;
+  margin-bottom: var(--space-1);
+  line-height: 1.3;
+}
+
+.list-item__address {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-accent-blue);
+  text-decoration: underline;
+  display: inline-block;
+  margin-bottom: var(--space-1);
+  transition: color 0.2s ease;
+}
+
+.list-item__address:hover {
+  color: var(--color-accent-green);
+}
+
+.list-item__meta {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-1);
+}
+
+.list-item__description {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.list-item__note {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-accent-green);
+  font-weight: 600;
+  margin-top: var(--space-1);
+}
+
+/* Responsive Design - Tablet (768px - 1024px) */
+@media (min-width: 768px) {
+  .list-grid__group {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4) var(--space-8);
+  }
+  
+  .list-grid__category-header {
+    font-size: var(--text-lg);
+    margin-top: var(--space-8);
+  }
+  
+  .list-item {
+    margin-bottom: var(--space-4);
+  }
+  
+  .list-item__title {
+    font-size: var(--text-xl);
+  }
+  
+  .list-item__address,
+  .list-item__description {
+    font-size: var(--text-base);
+  }
+  
+  .list-item__meta {
+    font-size: var(--text-sm);
+  }
+}
+
+/* Responsive Design - Desktop (> 1024px) */
+@media (min-width: 1024px) {
+  .list-grid__group {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4) var(--space-12);
+  }
+  
+  #food,
+  #nightlife,
+  #must-try {
+    padding: var(--space-12) var(--space-4);
+  }
+}
+
+/* Extra wide screens - 4 columns */
+@media (min-width: 1400px) {
+  .list-grid__group {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Must Try Section - Simple flowing list */
+.must-try-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.must-try-item {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  color: var(--color-text);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.must-try-item:last-child {
+  border-bottom: none;
+}
+
+/* Responsive Design - Tablet and up */
+@media (min-width: 768px) {
+  .must-try-item {
+    font-size: var(--text-xl);
+  }
+}
+
+/* Neighborhoods Section - Alternating image/text layout */
+.neighborhoods-list {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.neighborhood-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.neighborhood-item__image {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--space-2);
+}
+
+.neighborhood-item__image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.neighborhood-item__content {
+  flex: 1;
+}
+
+.neighborhood-item__title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+  font-weight: 400;
+}
+
+.neighborhood-item__description {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-text);
+  line-height: 1.7;
+  margin-bottom: var(--space-2);
+}
+
+.neighborhood-item__vibe {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* Responsive Design - Desktop (> 768px) - Alternating layout */
+@media (min-width: 768px) {
+  .neighborhood-item {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-8);
+  }
+  
+  .neighborhood-item__image {
+    width: 45%;
+    flex-shrink: 0;
+  }
+  
+  .neighborhood-item__content {
+    width: 55%;
+  }
+  
+  /* Image on right (even items) */
+  .neighborhood-item--image-right {
+    flex-direction: row;
+  }
+  
+  /* Image on left (odd items) */
+  .neighborhood-item--image-left {
+    flex-direction: row-reverse;
+  }
+  
+  .neighborhood-item__title {
+    font-size: var(--text-3xl);
+  }
+  
+  .neighborhood-item__description {
+    font-size: var(--text-lg);
+  }
+}
+
+/* Responsive Design - Large Desktop */
+@media (min-width: 1024px) {
+  .neighborhoods-list {
+    gap: var(--space-16);
+  }
+  
+  .neighborhood-item {
+    gap: var(--space-12);
+  }
+}
+
+/* Madrid Map Section */
+.map-section {
+  background-color: var(--color-background);
+  padding: var(--space-8) var(--space-8);
+}
+
+.map-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 var(--space-8);
+}
+
+.map-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--space-8);
+  box-shadow: 0 4px 12px rgba(78, 42, 30, 0.1);
+}
+
+/* Responsive Design - Tablet and up */
+@media (min-width: 768px) {
+  .map-section {
+    padding: var(--space-12) var(--space-12);
+  }
+  
+  .map-container {
+    max-width: 800px;
+    padding: 0 var(--space-16);
+  }
+  
+  .map-image {
+    border-radius: var(--space-12);
+  }
+}
+
+/* Responsive Design - Desktop */
+@media (min-width: 1024px) {
+  .map-section {
+    padding: var(--space-16) var(--space-24);
+  }
+  
+  .map-container {
+    max-width: 900px;
+    padding: 0 var(--space-24);
+  }
+}

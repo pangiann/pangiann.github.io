@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A personal Madrid city guide with local recommendations for restaurants, bars, walks, museums, and practical tips">
+  <title>Madrid - A Local's Guide</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Ovo&display=swap" rel="stylesheet">
+  
+  <!-- Preload critical fonts for faster initial render -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Ovo&display=swap" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400&display=swap" as="style">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Preload critical CSS (inline critical styles in production) -->
+  <link rel="preload" href="css/styles.css" as="style">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li class="nav-item"><a href="#neighborhoods" class="nav-link">Neighborhoods</a></li>
+        <li class="nav-item"><a href="#walks" class="nav-link">Walks</a></li>
+        <li class="nav-item"><a href="#museums" class="nav-link">Museums</a></li>
+        <li class="nav-item"><a href="#sightseeing" class="nav-link">Sights</a></li>
+        <li class="nav-item"><a href="#food" class="nav-link">Food</a></li>
+        <li class="nav-item"><a href="#nightlife" class="nav-link">Nightlife</a></li>
+        <li class="nav-item"><a href="#day-trips" class="nav-link">Day Trips</a></li>
+        <li class="nav-item"><a href="#must-try" class="nav-link">Must Try</a></li>
+        <li class="nav-item"><a href="#tips" class="nav-link">Tips</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="hero__banner">
+        <h1 class="hero__title">Madrid</h1>
+        <p class="hero__subtitle">A Local's Guide</p>
+        <p class="hero__intro">Personal recommendations from 4 years of living in this beautiful city</p>
+      </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="intro-section">
+      <div class="intro__content">
+        <!-- Content loaded dynamically from data/intro.json -->
+      </div>
+    </section>
+
+    <!-- Madrid Map Section -->
+    <section class="map-section">
+      <div class="map-container">
+        <img src="images/map/madrid-map.png" alt="Map of Madrid neighborhoods" class="map-image" loading="lazy">
+      </div>
+    </section>
+
+    <!-- Neighborhoods Section -->
+    <section class="content-section" id="neighborhoods">
+      <h2 class="section__title">Neighborhoods</h2>
+      <div class="neighborhoods-list">
+        <!-- Neighborhoods loaded dynamically -->
+      </div>
+    </section>
+
+    <!-- Walks Section -->
+    <section class="content-section" id="walks">
+      <h2 class="section__title">Walks & Routes</h2>
+      <div class="photo-grid photo-grid--3col">
+        <figure class="photo-grid__item">
+          <img src="images/walks/retiro-park.jpg" alt="Scenic view of Retiro Park with the Crystal Palace reflecting in the lake" loading="lazy">
+        </figure>
+        <figure class="photo-grid__item photo-grid__item--featured">
+          <img src="images/walks/gran-via.jpg" alt="Gran Vía street at sunset with historic buildings and bustling pedestrians" loading="lazy">
+        </figure>
+        <figure class="photo-grid__item">
+          <img src="images/walks/madrid-rio.jpg" alt="Madrid Río park pathway along the Manzanares river with cyclists and walkers" loading="lazy">
+        </figure>
+      </div>
+      <div class="cards-grid">
+        <!-- Cards loaded dynamically from data/walks/ -->
+      </div>
+    </section>
+
+
+    <!-- Museums Section -->
+    <section class="content-section" id="museums">
+      <h2 class="section__title">Museums & Monuments</h2>
+      <div class="photo-grid photo-grid--3col">
+        <figure class="photo-grid__item">
+          <img src="images/museums/prado-exterior.jpg" alt="Exterior facade of the Museo del Prado with its iconic neoclassical columns" loading="lazy">
+        </figure>
+        <figure class="photo-grid__item photo-grid__item--featured">
+          <img src="images/museums/reina-sofia.jpg" alt="Modern glass elevator of the Reina Sofía Museum against the historic building" loading="lazy">
+        </figure>
+        <figure class="photo-grid__item">
+          <img src="images/museums/royal-palace.jpg" alt="Royal Palace of Madrid with its grand white stone architecture and manicured gardens" loading="lazy">
+        </figure>
+      </div>
+      <div class="cards-grid">
+        <!-- Cards loaded dynamically from data/museums/ -->
+      </div>
+    </section>
+
+
+    <!-- Day Trips Section -->
+    <section class="content-section" id="day-trips">
+      <h2 class="section__title">Day Trips from Madrid</h2>
+      <div class="photo-grid photo-grid--3col">
+        <figure class="photo-grid__item">
+          <img src="images/day-trips/toledo.jpg" alt="Medieval city of Toledo with its cathedral and winding streets" loading="lazy">
+        </figure>
+        <figure class="photo-grid__item photo-grid__item--featured">
+          <img src="images/day-trips/segovia.jpg" alt="Roman aqueduct in Segovia with its impressive stone arches" loading="lazy">
+        </figure>
+        <figure class="photo-grid__item">
+          <img src="images/day-trips/escorial.jpg" alt="El Escorial monastery and palace complex" loading="lazy">
+        </figure>
+      </div>
+      <div class="cards-grid">
+        <!-- Cards loaded dynamically from data/day-trips/ -->
+      </div>
+    </section>
+
+     <!-- Must Try Section -->
+    <section class="content-section" id="must-try">
+      <h2 class="section__title">What You Must Try</h2>
+      <div class="must-try-list">
+        <!-- Items loaded dynamically -->
+      </div>
+    </section>
+
+    <!-- Food & Dining Section -->
+    <section class="content-section" id="food">
+      <h2 class="section__title">Food & Dining</h2>
+      <div class="list-grid">
+        <!-- All food items loaded dynamically -->
+      </div>
+    </section>
+
+    <!-- Nightlife Section -->
+    <section class="content-section" id="nightlife">
+      <h2 class="section__title">Nightlife</h2>
+      <div class="list-grid">
+        <!-- All nightlife items loaded dynamically -->
+      </div>
+    </section>
+
+   
+
+  </main>
+
+  <!-- Scripts: type="module" automatically defers execution -->
+  <script type="module" src="js/scripts.js"></script>
+</body>
+</html>
