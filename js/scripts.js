@@ -56,9 +56,9 @@ function initializeNavToggle() {
     
     // Prevent body scrolling when menu is open
     if (!isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.classList.add('menu-open');
     } else {
-      document.body.style.overflow = '';
+      document.body.classList.remove('menu-open');
     }
   });
   
@@ -67,7 +67,7 @@ function initializeNavToggle() {
     link.addEventListener('click', () => {
       navToggle.setAttribute('aria-expanded', 'false');
       siteNav.classList.remove('is-open');
-      document.body.style.overflow = '';
+      document.body.classList.remove('menu-open');
     });
   });
   
@@ -76,7 +76,7 @@ function initializeNavToggle() {
     if (!siteNav.contains(e.target) && !navToggle.contains(e.target)) {
       navToggle.setAttribute('aria-expanded', 'false');
       siteNav.classList.remove('is-open');
-      document.body.style.overflow = '';
+      document.body.classList.remove('menu-open');
     }
   });
 }
