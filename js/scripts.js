@@ -37,5 +37,46 @@ document.addEventListener('DOMContentLoaded', () => {
   loadIntroText();
   initializeCards();
   initializeListSections();
+  initializeNavToggle();
   console.log('Madrid City Guide loaded');
 });
+
+// Hamburger menu toggle
+function initializeNavToggle() {
+  const navToggle = document.querySelector('.nav-toggle');
+  const siteNav = document.querySelector('.site-nav');
+  const navLinks = document.querySelectorAll('.nav-link');
+  
+  if (!navToggle || !siteNav) return;
+  
+  navToggle.addEventListener('click', () => {
+    const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', !isOpen);
+    siteNav.classList.toggle('is-open');
+    
+    // Prevent body scrolling when menu is open
+    if (!isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  });
+  
+  // Close menu when clicking a link
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.setAttribute('aria-expanded', 'false');
+      siteNav.classList.remove('is-open');
+      document.body.style.overflow = '';
+    });
+  });
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!siteNav.contains(e.target) && !navToggle.contains(e.target)) {
+      navToggle.setAttribute('aria-expanded', 'false');
+      siteNav.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+  });
+}

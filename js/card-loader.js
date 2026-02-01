@@ -262,6 +262,13 @@ function createIndividualCard(cardData) {
     </p>
   ` : '';
 
+  const ticketLinkHtml = cardData.ticketLink ? `
+    <a href="${cardData.ticketLink}" target="_blank" rel="noopener noreferrer" class="card__ticket-link">
+      ${icons.ticket}
+      Buy Tickets
+    </a>
+  ` : '';
+
   return `
     <article class="content-card">
       <h3 class="card__title">${cardData.title}</h3>
@@ -280,6 +287,7 @@ function createIndividualCard(cardData) {
       </p>
       ${howToGetThereHtml}
       ${ticketInfoHtml}
+      ${ticketLinkHtml}
       ${mapLinkHtml}
     </article>
   `;

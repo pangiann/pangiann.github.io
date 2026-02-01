@@ -7,5 +7,6 @@
   "cuisine": "Creative Spanish-Mediterranean",
   "knownFor": "Top recommendation, creative cuisine with Peruvian influences",
   "description": "Creative Spanish-Mediterranean restaurant with two locations. Features ceviche, provoleta, and innovative dishes. Open Wed-Sun for lunch (1pm-4pm) and dinner (8:30pm-midnight). Second location at Puerta Cerrada.",
-  "mustBook": true
+  "mustBook": true,
+  "topPick": true
 }

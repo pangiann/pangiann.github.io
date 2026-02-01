@@ -12,7 +12,7 @@ function createMapsUrl(address, title) {
 /**
  * Creates a compact list item
  */
-function createListItem(item) {
+function createListItem(item, showOnlyTopPicks = false, category = '') {
   const mapsUrl = createMapsUrl(item.address, item.title);
   
   // Build metadata line (neighborhood, price, category)
@@ -27,9 +27,17 @@ function createListItem(item) {
   // Special notes (must book, etc.)
   const specialNote = item.mustBook ? '<div class="list-item__note">Must book</div>' : '';
   
+  // Top pick badge
+  const topPickBadge = item.topPick ? '<span class="top-pick-badge">Top Pick</span>' : '';
+  const itemClass = item.topPick ? 'list-item list-item--top-pick' : 'list-item';
+  
+  // Add extra-option class and data attribute for non-top picks
+  const extraClass = !item.topPick ? ` extra-option` : '';
+  const extraData = !item.topPick ? ` data-category="${category}"` : '';
+  
   return `
-    <div class="list-item">
-      <div class="list-item__title">${item.title}</div>
+    <div class="${itemClass}${extraClass}"${extraData}>
+      <div class="list-item__title">${item.title}${topPickBadge}</div>
       ${item.address ? `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="list-item__address">${item.address}</a>` : ''}
       ${metaLine}
       ${description ? `<div class="list-item__description">${description}</div>` : ''}
@@ -38,11 +46,16 @@ function createListItem(item) {
   `;
 }
 
+// Store loaded data for toggling
+let foodData = null;
+let nightlifeData = null;
+
 /**
  * Load all food items from multiple directories
  */
 async function loadAllFoodItems() {
   const foodPaths = [
+    { path: 'data/food-recs/tapas', label: 'Tapas' },
     { path: 'data/food-recs/restaurants', label: 'Restaurants' },
     { path: 'data/food-recs/brunch', label: 'Brunch' },
     { path: 'data/food-recs/coffee', label: 'Coffee' },
@@ -137,12 +150,38 @@ function groupByCategory(items) {
 /**
  * Render grouped items with category headers
  */
-function renderGroupedItems(groups) {
+function renderGroupedItems(groups, showOnlyTopPicks = false) {
   let html = '<div class="list-grid__group">';
   
   Object.entries(groups).forEach(([category, items]) => {
-    html += `<div class="list-grid__category-header">${category}</div>`;
-    html += items.map(item => createListItem(item)).join('');
+    // Sort items: top picks first, then others
+    const sortedItems = [...items].sort((a, b) => {
+      if (a.topPick && !b.topPick) return -1;
+      if (!a.topPick && b.topPick) return 1;
+      return 0;
+    });
+    
+    if (sortedItems.length > 0) {
+      html += `<div class="list-grid__category-header">${category}</div>`;
+      
+      // Check if we have both top picks and non-top picks
+      const hasTopPicks = sortedItems.some(item => item.topPick);
+      const hasNonTopPicks = sortedItems.some(item => !item.topPick);
+      const showToggle = hasTopPicks && hasNonTopPicks;
+      
+      // Render items
+      sortedItems.forEach((item, index) => {
+        html += createListItem(item, showOnlyTopPicks, category);
+        
+        // Add toggle link after the last top pick
+        if (showToggle && item.topPick && 
+            (index === sortedItems.length - 1 || !sortedItems[index + 1]?.topPick)) {
+          html += `<div class="toggle-extra-link-container">
+            <button class="toggle-extra-link" data-category="${category}">Hide extra options</button>
+          </div>`;
+        }
+      });
+    }
   });
   
   html += '</div>';
@@ -152,31 +191,37 @@ function renderGroupedItems(groups) {
 /**
  * Initialize food section
  */
-async function initializeFoodSection() {
+async function initializeFoodSection(showOnlyTopPicks = false) {
   const container = document.querySelector('#food .list-grid');
   if (!container) {
     console.warn('Food section container not found');
     return;
   }
   
-  const items = await loadAllFoodItems();
-  const groups = groupByCategory(items);
-  container.innerHTML = renderGroupedItems(groups);
+  if (!foodData) {
+    foodData = await loadAllFoodItems();
+  }
+  
+  const groups = groupByCategory(foodData);
+  container.innerHTML = renderGroupedItems(groups, showOnlyTopPicks);
 }
 
 /**
  * Initialize nightlife section
  */
-async function initializeNightlifeSection() {
+async function initializeNightlifeSection(showOnlyTopPicks = false) {
   const container = document.querySelector('#nightlife .list-grid');
   if (!container) {
     console.warn('Nightlife section container not found');
     return;
   }
   
-  const items = await loadAllNightlifeItems();
-  const groups = groupByCategory(items);
-  container.innerHTML = renderGroupedItems(groups);
+  if (!nightlifeData) {
+    nightlifeData = await loadAllNightlifeItems();
+  }
+  
+  const groups = groupByCategory(nightlifeData);
+  container.innerHTML = renderGroupedItems(groups, showOnlyTopPicks);
 }
 
 /**
@@ -271,9 +316,90 @@ async function initializeNeighborhoodsSection() {
 /**
  * Initialize all list sections
  */
-export function initializeListSections() {
-  initializeFoodSection();
-  initializeNightlifeSection();
+export function initializeListSections(showOnlyTopPicks = false) {
+  initializeFoodSection(showOnlyTopPicks);
+  initializeNightlifeSection(showOnlyTopPicks);
   initializeMustTrySection();
   initializeNeighborhoodsSection();
+  initializeToggleButtons();
+  initializeInlineToggleLinks();
 }
+
+/**
+ * Initialize inline toggle links for hiding/showing extra options
+ */
+let toggleLinksInitialized = false;
+
+function initializeInlineToggleLinks() {
+  // Only initialize once to avoid multiple event listeners
+  if (toggleLinksInitialized) return;
+  toggleLinksInitialized = true;
+  
+  // Use event delegation since links are dynamically created
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('toggle-extra-link')) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const button = e.target;
+      const category = button.getAttribute('data-category');
+      const isHiding = button.textContent.includes('Hide');
+      
+      // Find all extra option items for this category
+      const categoryContainer = button.closest('.list-grid__group');
+      const extraItems = categoryContainer.querySelectorAll(`.extra-option[data-category="${category}"]`);
+      
+      // Toggle visibility
+      extraItems.forEach(item => {
+        if (isHiding) {
+          item.classList.add('hidden');
+        } else {
+          item.classList.remove('hidden');
+        }
+      });
+      
+      // Update button text
+      button.textContent = isHiding ? 'Show extra options' : 'Hide extra options';
+    }
+  });
+}
+
+/**
+ * Initialize toggle buttons for food and nightlife sections
+ */
+function initializeToggleButtons() {
+  const buttons = document.querySelectorAll('.more-options-btn');
+  
+  buttons.forEach(button => {
+    button.addEventListener('click', async () => {
+      const section = button.getAttribute('data-section');
+      const currentState = button.getAttribute('data-showing');
+      const showTopPicks = currentState === 'all';
+      
+      // Update button state and text
+      if (showTopPicks) {
+        button.setAttribute('data-showing', 'top-picks');
+        button.textContent = section === 'food' ? 'View All Food Options' : 'View All Nightlife Options';
+      } else {
+        button.setAttribute('data-showing', 'all');
+        button.textContent = section === 'food' ? 'Show Top Picks Only' : 'Show Top Picks Only';
+      }
+      
+      // Re-render the section
+      if (section === 'food') {
+        await initializeFoodSection(showTopPicks);
+      } else if (section === 'nightlife') {
+        await initializeNightlifeSection(showTopPicks);
+      }
+      
+      // Always scroll to the top of the section
+      const sectionElement = document.querySelector(`#${section}`);
+      if (sectionElement) {
+        sectionElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+}
+
+// Export functions for use in more options pages
+export { loadAllFoodItems, loadAllNightlifeItems, groupByCategory, renderGroupedItems };

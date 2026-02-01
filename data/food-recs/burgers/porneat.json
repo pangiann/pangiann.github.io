@@ -5,5 +5,6 @@
   "priceRange": "€€",
   "category": "Burgers",
   "knownFor": "Gourmet burgers, hangover cure",
-  "description": "Popular burger chain with multiple Madrid locations. Known for quality gourmet burgers at reasonable prices. Great for casual dining and post-party recovery."
+  "description": "Popular burger chain with multiple Madrid locations. Known for quality gourmet burgers at reasonable prices. Great for casual dining and post-party recovery.",
+  "topPick": true
 }

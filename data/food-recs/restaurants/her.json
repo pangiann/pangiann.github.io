@@ -8,5 +8,6 @@
   "knownFor": "Beautiful interior, romantic atmosphere, refined cuisine",
   "description": "Elegant upscale restaurant in Salamanca with stunning interior design. Perfect for special occasions and romantic dinners. Refined Spanish cuisine with impeccable service.",
   "note": "Reserve early",
-  "mustBook": true
+  "mustBook": true,
+  "topPick": true
 }

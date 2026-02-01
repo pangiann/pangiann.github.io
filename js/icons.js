@@ -11,5 +11,9 @@ export const icons = {
   
   map: `<svg class="icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
     <path d="M15.5 0.5L10.5 2.5L5.5 0.5L0.5 2.5V15.5L5.5 13.5L10.5 15.5L15.5 13.5V0.5ZM5.5 2.5L10.5 4.5V13.5L5.5 11.5V2.5Z"/>
+  </svg>`,
+  
+  ticket: `<svg class="icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+    <path d="M14 3H2c-.6 0-1 .4-1 1v2.5c.8 0 1.5.7 1.5 1.5S1.8 9.5 1 9.5V12c0 .6.4 1 1 1h12c.6 0 1-.4 1-1V9.5c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5V4c0-.6-.4-1-1-1zM9 11H7V5h2v6z"/>
   </svg>`
 };

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Complete list of nightlife recommendations in Madrid">
+  <title>All Nightlife Options - Madrid Guide</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Ovo&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+    <nav class="site-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li class="nav-item"><a href="index.html" class="nav-link">← Back to Guide</a></li>
+        <li class="nav-item"><a href="index.html#neighborhoods" class="nav-link">Neighborhoods</a></li>
+        <li class="nav-item"><a href="index.html#walks" class="nav-link">Walks</a></li>
+        <li class="nav-item"><a href="index.html#museums" class="nav-link">Museums</a></li>
+        <li class="nav-item"><a href="food-more.html" class="nav-link">Food & Dining</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero" style="padding: var(--space-12) var(--space-4);">
+      <div class="hero__banner">
+        <h1 class="hero__title" style="font-size: var(--text-4xl);">All Nightlife</h1>
+        <p class="hero__subtitle">Complete recommendations for bars and clubs</p>
+      </div>
+    </section>
+
+    <!-- Nightlife Section -->
+    <section class="content-section" id="nightlife">
+      <div class="list-grid">
+        <!-- All nightlife items loaded dynamically -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { loadAllNightlifeItems, groupByCategory, renderGroupedItems } from './js/list-loader.js';
+    
+    // Initialize navigation toggle
+    function initializeNavToggle() {
+      const navToggle = document.querySelector('.nav-toggle');
+      const siteNav = document.querySelector('.site-nav');
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      if (!navToggle || !siteNav) return;
+      
+      navToggle.addEventListener('click', () => {
+        const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', !isOpen);
+        siteNav.classList.toggle('is-open');
+        
+        // Prevent body scrolling when menu is open
+        if (!isOpen) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
+      });
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          navToggle.setAttribute('aria-expanded', 'false');
+          siteNav.classList.remove('is-open');
+          document.body.style.overflow = '';
+        });
+      });
+      
+      document.addEventListener('click', (e) => {
+        if (!siteNav.contains(e.target) && !navToggle.contains(e.target)) {
+          navToggle.setAttribute('aria-expanded', 'false');
+          siteNav.classList.remove('is-open');
+          document.body.style.overflow = '';
+        }
+      });
+    }
+    
+    // Load all nightlife items
+    async function loadAllNightlife() {
+      const container = document.querySelector('#nightlife .list-grid');
+      if (!container) return;
+      
+      const items = await loadAllNightlifeItems();
+      const groups = groupByCategory(items);
+      container.innerHTML = renderGroupedItems(groups, false); // Show all items
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      initializeNavToggle();
+      loadAllNightlife();
+    });
+  </script>
+</body>
+</html>

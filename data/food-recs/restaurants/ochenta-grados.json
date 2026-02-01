@@ -6,5 +6,6 @@
   "category": "Something Different",
   "cuisine": "Fusion / Creative",
   "knownFor": "Unique low-temperature cooking (never above 80°C), affordable fusion",
-  "description": "Innovative restaurant using special low-temperature cooking technique (sous-vide) to preserve nutrients and flavors. Features 'Gastro XS' menu with mini-dishes for tasting multiple options. Top-quality organic ingredients. Other locations in Las Tablas and Pozuelo."
+  "description": "Innovative restaurant using special low-temperature cooking technique (sous-vide) to preserve nutrients and flavors. Features 'Gastro XS' menu with mini-dishes for tasting multiple options. Top-quality organic ingredients. Other locations in Las Tablas and Pozuelo.",
+  "topPick": true
 }
