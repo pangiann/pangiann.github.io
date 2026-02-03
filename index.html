@@ -6,6 +6,12 @@
   <meta name="description" content="A personal Madrid city guide with local recommendations for restaurants, bars, walks, museums, and practical tips">
   <title>Madrid - A Local's Guide</title>
   
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +32,7 @@
   
   <!-- Navigation Header -->
   <header class="site-header">
-    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+    <button type="button" class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
       <span class="nav-toggle__bar"></span>
       <span class="nav-toggle__bar"></span>
       <span class="nav-toggle__bar"></span>
@@ -34,14 +40,13 @@
     <nav class="site-nav" aria-label="Main navigation">
       <ul class="nav-list">
         <li class="nav-item"><a href="#neighborhoods" class="nav-link">Neighborhoods</a></li>
+        <li class="nav-item"><a href="#dont-miss" class="nav-link">Don't Miss</a></li>
+        <li class="nav-item"><a href="#must-try" class="nav-link">Must Try</a></li>
         <li class="nav-item"><a href="#walks" class="nav-link">Walks</a></li>
         <li class="nav-item"><a href="#museums" class="nav-link">Museums</a></li>
-        <li class="nav-item"><a href="#sightseeing" class="nav-link">Sights</a></li>
+        <li class="nav-item"><a href="#day-trips" class="nav-link">Day Trips</a></li>
         <li class="nav-item"><a href="#food" class="nav-link">Food</a></li>
         <li class="nav-item"><a href="#nightlife" class="nav-link">Nightlife</a></li>
-        <li class="nav-item"><a href="#day-trips" class="nav-link">Day Trips</a></li>
-        <li class="nav-item"><a href="#must-try" class="nav-link">Must Try</a></li>
-        <li class="nav-item"><a href="#tips" class="nav-link">Tips</a></li>
       </ul>
     </nav>
   </header>
@@ -78,6 +83,22 @@
       </div>
     </section>
 
+    <!-- Don't Miss Section -->
+    <section class="content-section" id="dont-miss">
+      <h2 class="section__title">Don't Miss</h2>
+      <div class="dont-miss-list">
+        <!-- Items loaded dynamically from data/dont-miss/ -->
+      </div>
+    </section>
+
+    <!-- Must Try Section -->
+    <section class="content-section" id="must-try">
+      <h2 class="section__title">What You Must Try</h2>
+      <div class="must-try-list">
+        <!-- Items loaded dynamically -->
+      </div>
+    </section>
+
     <!-- Walks Section -->
     <section class="content-section" id="walks">
       <h2 class="section__title">Walks & Routes</h2>
@@ -101,14 +122,6 @@
       <h2 class="section__title">Day Trips from Madrid</h2>
       <div class="cards-grid">
         <!-- Cards loaded dynamically from data/day-trips/ -->
-      </div>
-    </section>
-
-     <!-- Must Try Section -->
-    <section class="content-section" id="must-try">
-      <h2 class="section__title">What You Must Try</h2>
-      <div class="must-try-list">
-        <!-- Items loaded dynamically -->
       </div>
     </section>
 

@@ -1,6 +1,7 @@
 {
-  "title": "Tinto de verano",
-  "emoji": "🇪🇸",
-  "category": "Must Try",
-  "knownFor": "Red wine with lemon soda - refreshing summer drink"
+  "title": "Tinto de Verano",
+  "icon": "🍷",
+  "description": "Red wine mixed with lemon Fanta or Casera (lemon soda). Cheaper and more refreshing than sangria, and what locals actually drink in summer. Order it at any terrace and embrace the Spanish way of life.",
+  "where": "Any bar terrace",
+  "tip": "Ask for 'con Casera' for the authentic version"
 }

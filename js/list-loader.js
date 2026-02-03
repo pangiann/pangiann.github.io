@@ -12,8 +12,9 @@ function createMapsUrl(address, title) {
 /**
  * Creates a compact list item
  */
-function createListItem(item, showOnlyTopPicks = false, category = '') {
-  const mapsUrl = createMapsUrl(item.address, item.title);
+function createListItem(item) {
+  // Use mapLink if provided, otherwise generate search URL
+  const mapsUrl = item.mapLink || createMapsUrl(item.address, item.title);
   
   // Build metadata line (neighborhood, price, category)
   const metaParts = [];
@@ -31,12 +32,8 @@ function createListItem(item, showOnlyTopPicks = false, category = '') {
   const topPickBadge = item.topPick ? '<span class="top-pick-badge">Top Pick</span>' : '';
   const itemClass = item.topPick ? 'list-item list-item--top-pick' : 'list-item';
   
-  // Add extra-option class and data attribute for non-top picks
-  const extraClass = !item.topPick ? ` extra-option` : '';
-  const extraData = !item.topPick ? ` data-category="${category}"` : '';
-  
   return `
-    <div class="${itemClass}${extraClass}"${extraData}>
+    <div class="${itemClass}">
       <div class="list-item__title">${item.title}${topPickBadge}</div>
       ${item.address ? `<a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="list-item__address">${item.address}</a>` : ''}
       ${metaLine}
@@ -150,7 +147,7 @@ function groupByCategory(items) {
 /**
  * Render grouped items with category headers
  */
-function renderGroupedItems(groups, showOnlyTopPicks = false) {
+function renderGroupedItems(groups) {
   let html = '<div class="list-grid__group">';
   
   Object.entries(groups).forEach(([category, items]) => {
@@ -163,24 +160,7 @@ function renderGroupedItems(groups, showOnlyTopPicks = false) {
     
     if (sortedItems.length > 0) {
       html += `<div class="list-grid__category-header">${category}</div>`;
-      
-      // Check if we have both top picks and non-top picks
-      const hasTopPicks = sortedItems.some(item => item.topPick);
-      const hasNonTopPicks = sortedItems.some(item => !item.topPick);
-      const showToggle = hasTopPicks && hasNonTopPicks;
-      
-      // Render items
-      sortedItems.forEach((item, index) => {
-        html += createListItem(item, showOnlyTopPicks, category);
-        
-        // Add toggle link after the last top pick
-        if (showToggle && item.topPick && 
-            (index === sortedItems.length - 1 || !sortedItems[index + 1]?.topPick)) {
-          html += `<div class="toggle-extra-link-container">
-            <button class="toggle-extra-link" data-category="${category}">Hide extra options</button>
-          </div>`;
-        }
-      });
+      html += sortedItems.map(item => createListItem(item)).join('');
     }
   });
   
@@ -191,7 +171,7 @@ function renderGroupedItems(groups, showOnlyTopPicks = false) {
 /**
  * Initialize food section
  */
-async function initializeFoodSection(showOnlyTopPicks = false) {
+async function initializeFoodSection() {
   const container = document.querySelector('#food .list-grid');
   if (!container) {
     console.warn('Food section container not found');
@@ -203,13 +183,13 @@ async function initializeFoodSection(showOnlyTopPicks = false) {
   }
   
   const groups = groupByCategory(foodData);
-  container.innerHTML = renderGroupedItems(groups, showOnlyTopPicks);
+  container.innerHTML = renderGroupedItems(groups);
 }
 
 /**
  * Initialize nightlife section
  */
-async function initializeNightlifeSection(showOnlyTopPicks = false) {
+async function initializeNightlifeSection() {
   const container = document.querySelector('#nightlife .list-grid');
   if (!container) {
     console.warn('Nightlife section container not found');
@@ -221,11 +201,11 @@ async function initializeNightlifeSection(showOnlyTopPicks = false) {
   }
   
   const groups = groupByCategory(nightlifeData);
-  container.innerHTML = renderGroupedItems(groups, showOnlyTopPicks);
+  container.innerHTML = renderGroupedItems(groups);
 }
 
 /**
- * Initialize must-try section with simple list style
+ * Initialize must-try section with card style (same as dont-miss)
  */
 async function initializeMustTrySection() {
   const container = document.querySelector('#must-try .must-try-list');
@@ -252,8 +232,23 @@ async function initializeMustTrySection() {
     const items = await Promise.all(itemPromises);
     const validItems = items.filter(item => item !== null);
     
-    // Simple list of titles
-    const html = validItems.map(item => `<div class="must-try-item">${item.title}</div>`).join('');
+    const html = validItems.map(item => {
+      const whereHtml = item.where ? `<span class="must-try-item__where">${item.where}</span>` : '';
+      const tipHtml = item.tip ? `<span class="must-try-item__tip">💡 ${item.tip}</span>` : '';
+      
+      return `
+        <div class="must-try-item">
+          <span class="must-try-item__icon">${item.icon || '🍽️'}</span>
+          <div class="must-try-item__content">
+            <div class="must-try-item__title">${item.title}</div>
+            <div class="must-try-item__description">${item.description}</div>
+            ${whereHtml}
+            ${tipHtml}
+          </div>
+        </div>
+      `;
+    }).join('');
+    
     container.innerHTML = html;
   } catch (error) {
     console.error('Error loading must-try items:', error);
@@ -314,91 +309,66 @@ async function initializeNeighborhoodsSection() {
 }
 
 /**
- * Initialize all list sections
+ * Initialize don't-miss section
  */
-export function initializeListSections(showOnlyTopPicks = false) {
-  initializeFoodSection(showOnlyTopPicks);
-  initializeNightlifeSection(showOnlyTopPicks);
-  initializeMustTrySection();
-  initializeNeighborhoodsSection();
-  initializeToggleButtons();
-  initializeInlineToggleLinks();
-}
-
-/**
- * Initialize inline toggle links for hiding/showing extra options
- */
-let toggleLinksInitialized = false;
-
-function initializeInlineToggleLinks() {
-  // Only initialize once to avoid multiple event listeners
-  if (toggleLinksInitialized) return;
-  toggleLinksInitialized = true;
+async function initializeDontMissSection() {
+  const container = document.querySelector('#dont-miss .dont-miss-list');
+  if (!container) {
+    console.warn('Dont-miss section container not found');
+    return;
+  }
   
-  // Use event delegation since links are dynamically created
-  document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('toggle-extra-link')) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const button = e.target;
-      const category = button.getAttribute('data-category');
-      const isHiding = button.textContent.includes('Hide');
-      
-      // Find all extra option items for this category
-      const categoryContainer = button.closest('.list-grid__group');
-      const extraItems = categoryContainer.querySelectorAll(`.extra-option[data-category="${category}"]`);
-      
-      // Toggle visibility
-      extraItems.forEach(item => {
-        if (isHiding) {
-          item.classList.add('hidden');
-        } else {
-          item.classList.remove('hidden');
-        }
-      });
-      
-      // Update button text
-      button.textContent = isHiding ? 'Show extra options' : 'Hide extra options';
-    }
-  });
-}
-
-/**
- * Initialize toggle buttons for food and nightlife sections
- */
-function initializeToggleButtons() {
-  const buttons = document.querySelectorAll('.more-options-btn');
-  
-  buttons.forEach(button => {
-    button.addEventListener('click', async () => {
-      const section = button.getAttribute('data-section');
-      const currentState = button.getAttribute('data-showing');
-      const showTopPicks = currentState === 'all';
-      
-      // Update button state and text
-      if (showTopPicks) {
-        button.setAttribute('data-showing', 'top-picks');
-        button.textContent = section === 'food' ? 'View All Food Options' : 'View All Nightlife Options';
-      } else {
-        button.setAttribute('data-showing', 'all');
-        button.textContent = section === 'food' ? 'Show Top Picks Only' : 'Show Top Picks Only';
-      }
-      
-      // Re-render the section
-      if (section === 'food') {
-        await initializeFoodSection(showTopPicks);
-      } else if (section === 'nightlife') {
-        await initializeNightlifeSection(showTopPicks);
-      }
-      
-      // Always scroll to the top of the section
-      const sectionElement = document.querySelector(`#${section}`);
-      if (sectionElement) {
-        sectionElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  try {
+    const response = await fetch('data/dont-miss/index.json');
+    const fileList = await response.json();
+    
+    const itemPromises = fileList.map(async (filename) => {
+      try {
+        const itemResponse = await fetch(`data/dont-miss/${filename}`);
+        if (!itemResponse.ok) return null;
+        return await itemResponse.json();
+      } catch (error) {
+        console.warn(`Failed to load ${filename}:`, error);
+        return null;
       }
     });
-  });
+    
+    const items = await Promise.all(itemPromises);
+    const validItems = items.filter(item => item !== null);
+    
+    const html = validItems.map(item => {
+      const whenHtml = item.when ? `<span class="dont-miss-item__when">${item.when}</span>` : '';
+      const tipHtml = item.tip ? `<span class="dont-miss-item__tip">💡 ${item.tip}</span>` : '';
+      const seasonalBadge = item.seasonal ? '<span class="dont-miss-item__seasonal">Seasonal</span>' : '';
+      
+      return `
+        <div class="dont-miss-item">
+          <span class="dont-miss-item__icon">${item.icon || '📍'}</span>
+          <div class="dont-miss-item__content">
+            <div class="dont-miss-item__title">${item.title}${seasonalBadge}</div>
+            <div class="dont-miss-item__description">${item.description}</div>
+            ${whenHtml}
+            ${tipHtml}
+          </div>
+        </div>
+      `;
+    }).join('');
+    
+    container.innerHTML = html;
+  } catch (error) {
+    console.error('Error loading dont-miss items:', error);
+  }
+}
+
+/**
+ * Initialize all list sections
+ */
+export function initializeListSections() {
+  initializeDontMissSection();
+  initializeFoodSection();
+  initializeNightlifeSection();
+  initializeMustTrySection();
+  initializeNeighborhoodsSection();
 }
 
 // Export functions for use in more options pages

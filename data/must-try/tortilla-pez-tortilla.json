@@ -1,6 +1,7 @@
 {
   "title": "Tortilla at Pez Tortilla",
-  "emoji": "🇪🇸",
-  "category": "Must Try",
-  "knownFor": "Best tortilla española in Madrid"
+  "icon": "🍳",
+  "description": "The best tortilla española in Madrid, hands down. Creamy, runny center, perfectly cooked. Order it with a caña (small beer) and you'll understand why Spaniards are obsessed with this simple dish.",
+  "where": "Malasaña",
+  "mapLink": "https://maps.app.goo.gl/peztortilla"
 }

@@ -1,6 +1,6 @@
 {
   "title": "Croquetas",
-  "emoji": "🇪🇸",
-  "category": "Must Try",
-  "knownFor": "Creamy fried croquettes"
+  "icon": "🍘",
+  "description": "Creamy béchamel-based croquettes, usually with jamón (ham) or bacalao (cod). Crispy outside, molten inside. A good croqueta is a thing of beauty. Bad ones are everywhere, so ask locals for recommendations.",
+  "where": "Any good tapas bar"
 }

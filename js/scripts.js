@@ -49,7 +49,10 @@ function initializeNavToggle() {
   
   if (!navToggle || !siteNav) return;
   
-  navToggle.addEventListener('click', () => {
+  navToggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
     const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
     navToggle.setAttribute('aria-expanded', !isOpen);
     siteNav.classList.toggle('is-open');
@@ -60,6 +63,8 @@ function initializeNavToggle() {
     } else {
       document.body.classList.remove('menu-open');
     }
+    
+    return false; // Extra safety to prevent any navigation
   });
   
   // Close menu when clicking a link

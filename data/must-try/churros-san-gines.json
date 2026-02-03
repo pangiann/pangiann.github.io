@@ -1,6 +1,7 @@
 {
   "title": "Churros at Chocolatería San Ginés",
-  "emoji": "🇪🇸",
-  "category": "Must Try",
-  "knownFor": "Iconic Madrid churros with chocolate"
+  "icon": "🍫",
+  "description": "Open since 1894, this is THE place for churros con chocolate. Go late at night after clubbing or early morning - it's open 24/7. The thick hot chocolate is meant for dipping, not drinking.",
+  "where": "Near Sol / Opera",
+  "mapLink": "https://maps.app.goo.gl/sangines"
 }

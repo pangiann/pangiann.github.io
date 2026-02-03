@@ -1,8 +1,9 @@
 {
   "title": "Maravillas Club",
   "address": "Calle San Vicente Ferrer, 33, Malasaña",
+  "mapLink": "https://maps.app.goo.gl/pMTiKUXN14GsrXD16",
   "neighborhood": "Malasaña",
   "category": "Indie / Alternative",
   "knownFor": "Emblematic venue with 30+ years history, indie/pop/rock concerts, LGBTQ+ friendly events",
-  "topPick": true
+  "topPick": false
 }

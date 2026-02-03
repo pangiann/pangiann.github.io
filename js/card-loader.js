@@ -88,14 +88,20 @@ function createCategoryCard(items, categoryTitle, sectionId) {
     const spanishFood = items.filter(item => item.category === 'Great Spanish Food');
     const somethingDifferent = items.filter(item => item.category === 'Something Different');
     
-    const createRestaurantItem = (item) => `
-      <li class="category-list__item">
-        <strong class="item__name">${item.title}</strong>
-        <span class="item__address">${item.address || item.neighborhood}</span>
-        <span class="item__price">${item.priceRange || ''}</span>
-        <span class="item__description">${item.knownFor}</span>
-      </li>
-    `;
+    const createRestaurantItem = (item) => {
+      const addressHtml = item.mapLink 
+        ? `<a href="${item.mapLink}" target="_blank" rel="noopener noreferrer" class="item__address">${item.address || item.neighborhood}</a>`
+        : `<span class="item__address">${item.address || item.neighborhood}</span>`;
+      
+      return `
+        <li class="category-list__item">
+          <strong class="item__name">${item.title}</strong>
+          ${addressHtml}
+          <span class="item__price">${item.priceRange || ''}</span>
+          <span class="item__description">${item.knownFor}</span>
+        </li>
+      `;
+    };
     
     let html = '<article class="category-card">';
     
@@ -132,14 +138,20 @@ function createCategoryCard(items, categoryTitle, sectionId) {
 
   // Other food categories
   if (['brunch', 'coffee', 'burgers', 'pizza'].includes(sectionId)) {
-    const itemsHtml = items.map(item => `
-      <li class="category-list__item">
-        <strong class="item__name">${item.title}</strong>
-        <span class="item__address">${item.address || item.neighborhood}</span>
-        <span class="item__price">${item.priceRange || ''}</span>
-        <span class="item__description">${item.knownFor}</span>
-      </li>
-    `).join('');
+    const itemsHtml = items.map(item => {
+      const addressHtml = item.mapLink 
+        ? `<a href="${item.mapLink}" target="_blank" rel="noopener noreferrer" class="item__address">${item.address || item.neighborhood}</a>`
+        : `<span class="item__address">${item.address || item.neighborhood}</span>`;
+      
+      return `
+        <li class="category-list__item">
+          <strong class="item__name">${item.title}</strong>
+          ${addressHtml}
+          <span class="item__price">${item.priceRange || ''}</span>
+          <span class="item__description">${item.knownFor}</span>
+        </li>
+      `;
+    }).join('');
     
     return `
       <article class="category-card">
@@ -155,14 +167,20 @@ function createCategoryCard(items, categoryTitle, sectionId) {
     const cocktailBars = items.filter(item => item.category === 'Cocktails' || item.category === 'Cocktail Bar');
     const otherBars = items.filter(item => item.category !== 'Cocktails' && item.category !== 'Cocktail Bar');
     
-    const createBarItem = (item) => `
-      <li class="category-list__item">
-        <strong class="item__name">${item.title}</strong>
-        <span class="item__address">${item.address || item.neighborhood}</span>
-        <span class="item__price">${item.priceRange || ''}</span>
-        <span class="item__description">${item.knownFor}</span>
-      </li>
-    `;
+    const createBarItem = (item) => {
+      const addressHtml = item.mapLink 
+        ? `<a href="${item.mapLink}" target="_blank" rel="noopener noreferrer" class="item__address">${item.address || item.neighborhood}</a>`
+        : `<span class="item__address">${item.address || item.neighborhood}</span>`;
+      
+      return `
+        <li class="category-list__item">
+          <strong class="item__name">${item.title}</strong>
+          ${addressHtml}
+          <span class="item__price">${item.priceRange || ''}</span>
+          <span class="item__description">${item.knownFor}</span>
+        </li>
+      `;
+    };
     
     let html = '<article class="category-card">';
     
@@ -194,13 +212,19 @@ function createCategoryCard(items, categoryTitle, sectionId) {
     const indieAlt = items.filter(item => item.category === 'Indie / Alternative');
     const funChaos = items.filter(item => item.category === 'Fun / Chaos / University');
     
-    const createClubItem = (item) => `
-      <li class="category-list__item">
-        <strong class="item__name">${item.title}</strong>
-        <span class="item__address">${item.address || item.neighborhood}</span>
-        <span class="item__description">${item.knownFor}</span>
-      </li>
-    `;
+    const createClubItem = (item) => {
+      const addressHtml = item.mapLink 
+        ? `<a href="${item.mapLink}" target="_blank" rel="noopener noreferrer" class="item__address">${item.address || item.neighborhood}</a>`
+        : `<span class="item__address">${item.address || item.neighborhood}</span>`;
+      
+      return `
+        <li class="category-list__item">
+          <strong class="item__name">${item.title}</strong>
+          ${addressHtml}
+          <span class="item__description">${item.knownFor}</span>
+        </li>
+      `;
+    };
     
     let html = '<article class="category-card">';
     
